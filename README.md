@@ -1,2 +1,2 @@
-# viesmann-exporter
+# viessmann-exporter
 Prometheus exporter for vi-care data.
