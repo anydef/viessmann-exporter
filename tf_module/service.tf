@@ -23,10 +23,7 @@ resource "kubernetes_service_v1" "viessmann-exporter" {
   }
 }
 
-variable "context_path" {
-  default = ""
-}
-resource "kubernetes_ingress_v1" "pushgateway" {
+resource "kubernetes_ingress_v1" "viessmann-exporter" {
   metadata {
     name        = var.name
     namespace   = var.namespace
