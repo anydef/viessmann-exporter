@@ -19,7 +19,7 @@ resource "kubernetes_manifest" "viessmann-exporter-servicemonitor_monitoring" {
           "relabelings"       = []
           "metricRelabelings" = []
           "honorLabels"       = true
-          "path"              = "/metrics/"
+          "path"              = "/metrics"
         },
       ]
       "jobLabel" = "app.kubernetes.io/name"
