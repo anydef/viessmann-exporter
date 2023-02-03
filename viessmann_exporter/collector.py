@@ -4,13 +4,15 @@ from viessmann_exporter.exporter_client import fetch_metrics
 
 
 def scrape_vicare():
+    print("Start scraping values")
     metrics = fetch_metrics()
+    print("Scraped metrics", metrics)
 
     STORAGE_WATER_TEMP_GAUGE.set(metrics.storage_water_temp)
     CONFIGURED_WATER_TEMP_GAUGE.set(metrics.configured_water_temp)
     OUTSIDE_TEMP_GAUGE.set(metrics.outside_temp)
     BOILER_TEMP_GAUGE.set(metrics.boiler_temp)
-    BURNER_ACTIVE_GAUGE.set(1.0 if metrics.burner_active else 0.0)
+    BURNER_ACTIVE_GAUGE.set(1 if metrics.burner_active else 0)
 
 
 REQUEST_TIME = Summary('request_processing_seconds', 'Time spent processing request')

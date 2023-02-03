@@ -8,7 +8,7 @@ from werkzeug.middleware.dispatcher import DispatcherMiddleware
 
 from viessmann_exporter.collector import scrape_vicare
 
-poling_interval = os.getenv("VIESSMANN_POLLING_INTERVAL", "180")
+polling_interval = int(os.getenv("VIESSMANN_POLLING_INTERVAL", "180"))
 
 
 # Create a metric to track time spent and requests made.
@@ -20,7 +20,7 @@ def create_app(test_config=None):
     })
 
     scheduler = BackgroundScheduler()
-    scheduler.add_job(func=scrape_vicare, next_run_time=datetime.now(), trigger='interval', seconds=int("180"))
+    scheduler.add_job(func=scrape_vicare, next_run_time=datetime.now(), trigger='interval', seconds=polling_interval)
     scheduler.start()
     # Shut down the scheduler when exiting the app
     atexit.register(lambda: scheduler.shutdown())
